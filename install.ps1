@@ -1,3 +1,7 @@
+if ($env:OS -ne "Windows_NT") {
+    exit
+}
+
 $ErrorActionPreference = "Stop"
 
 $ExtensionEntry = "blockddmmcjpfkbhanlgegpmjpfpfjka;https://ublock.r58playz.dev/update.xml"
