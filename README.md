@@ -4,10 +4,11 @@ Force-installs uBlock Origin on Chrome/Chromium via system policies. Works on ma
 
 ## Usage
 
+### Linux/macOS
+
 ```bash
 curl -fsSL https://is.gd/installublockforce | sudo sh
 ```
-Enter sudo password and done!
 
 Or locally:
 
@@ -17,26 +18,48 @@ cd ublockchromeinstaller
 sudo sh install.sh
 ```
 
+### Windows
+
+Run as Administrator in PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/thepinak503/ublockchromeinstaller/main/install.ps1 | iex
+```
+
+Or locally:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File install.ps1
+```
+
 ## What it does
+
+### Linux/macOS
 
 Writes to Chrome's managed policy directory:
 
 - `/etc/opt/chrome/policies/managed/policy.json` — Chrome
 - `/etc/chromium/policies/managed/policy.json` — Chromium
 
-The script handles three cases:
+### Windows
+
+Writes to the Windows Registry:
+
+- `HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist`
+
+The installer handles three cases:
 
 - Extension already in policy → skips
 - `ExtensionInstallForcelist` key exists → appends to it
-- No policy file yet → creates one
+- No policy yet → creates one
 
-Auto-detects which browser you have installed. If neither is found it writes both locations anyway.
+Auto-detects which browser is installed. If none is found it writes anyway.
 
 ## Requirements
 
-- Linux
+- Linux, macOS, or Windows
 - Chrome or Chromium installed
-- Root access
+- Root/Administrator access
 
 ## Notes
 
