@@ -41,11 +41,15 @@ Writes to Chrome's managed policy directory:
 - `/etc/opt/chrome/policies/managed/policy.json` — Chrome
 - `/etc/chromium/policies/managed/policy.json` — Chromium
 
+The extension ID is `cjpalhdlnbpafiamejdnhcphjbkeiagm` (uBlock Origin official).
+
 ### Windows
 
 Writes to the Windows Registry:
 
 - `HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist`
+
+The extension ID is `cjpalhdlnbpafiamejdnhcphjbkeiagm` (uBlock Origin official).
 
 The installer handles three cases:
 
