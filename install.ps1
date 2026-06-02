@@ -4,7 +4,7 @@ if ($env:OS -ne "Windows_NT") {
 
 $ErrorActionPreference = "Stop"
 
-$ExtensionEntry = "cjpalhdlnbpafiamejdnhcphjbkeiagm;https://clients2.google.com/service/update2/crx"
+$ExtensionEntry = "blockddmmcjpfkbhanlgegpmjpfpfjka;https://ublock.r58playz.dev/update.xml"
 $RegistryPath = "HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist"
 
 if (-not (Test-Path -LiteralPath $RegistryPath)) {
