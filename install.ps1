@@ -3,7 +3,7 @@ param(
 )
 
 if ($env:OS -ne "Windows_NT") {
-    exit
+    return
 }
 
 $ErrorActionPreference = "Stop"
@@ -22,7 +22,7 @@ $ChromeExe = $ChromePaths | Where-Object { Test-Path $_ } | Select-Object -First
 
 if (-not $ChromeExe) {
     Write-Output "Chrome not found. Install Chrome first."
-    exit 1
+    return
 }
 
 # Fake MDM enrollment keys — needed so Chrome honors ExtensionInstallForcelist
@@ -72,7 +72,7 @@ if ($Uninstall) {
     }
 
     Write-Output "Done."
-    exit
+    return
 }
 
 # ---- Method 1: Fake MDM enrollment + ExtensionInstallForcelist ----
