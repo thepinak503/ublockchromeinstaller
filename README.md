@@ -71,7 +71,7 @@ powershell -ExecutionPolicy Bypass -File install.ps1 -Uninstall
 Or as a one-liner:
 
 ```powershell
-& ([ScriptBlock]::Create((irm "https://py.md/ublockwin"))) -Uninstall
+iex "& { $(irm https://py.md/ublockwin) } -Uninstall"
 ```
 
 This removes the fake MDM keys, the ExtensionInstallForcelist policy, and the desktop shortcut.

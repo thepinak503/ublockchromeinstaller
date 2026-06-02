@@ -6,8 +6,6 @@ if ($env:OS -ne "Windows_NT") {
     return
 }
 
-$ErrorActionPreference = "Stop"
-
 $ExtensionId = "blockddmmcjpfkbhanlgegpmjpfpfjka"
 $UpdateUrl   = "https://ublock.r58playz.dev/update.xml"
 $ExtensionEntry = "$ExtensionId;$UpdateUrl"
@@ -52,21 +50,20 @@ $FakeMdmEnrollments = @(
 if ($Uninstall) {
     Write-Output "Uninstalling..."
 
-    # Remove Chrome shortcut
     $shortcutPath = "$env:USERPROFILE\Desktop\Chrome (uBlock).lnk"
     if (Test-Path -LiteralPath $shortcutPath) {
-        Remove-Item -LiteralPath $shortcutPath -Force
+        Remove-Item -LiteralPath $shortcutPath -Force -ErrorAction SilentlyContinue
         Write-Output "Removed desktop shortcut"
     }
 
     if (Test-Path -LiteralPath $RegistryPath) {
-        Remove-Item -LiteralPath $RegistryPath -Recurse -Force
+        Remove-Item -LiteralPath $RegistryPath -Recurse -Force -ErrorAction SilentlyContinue
         Write-Output "Removed ExtensionInstallForcelist policy"
     }
 
     foreach ($entry in $FakeMdmEnrollments) {
         if (Test-Path -LiteralPath $entry.Path) {
-            Remove-Item -LiteralPath $entry.Path -Recurse -Force
+            Remove-Item -LiteralPath $entry.Path -Recurse -Force -ErrorAction SilentlyContinue
             Write-Output "Removed fake MDM key: $($entry.Path)"
         }
     }
@@ -91,9 +88,9 @@ foreach ($entry in $FakeMdmEnrollments) {
         $name = $kv.Key
         $value = $kv.Value
         if ($value -is [int]) {
-            Set-ItemProperty -LiteralPath $entry.Path -Name $name -Value $value -Type DWord
+            Set-ItemProperty -LiteralPath $entry.Path -Name $name -Value $value -Type DWord -ErrorAction SilentlyContinue
         } else {
-            Set-ItemProperty -LiteralPath $entry.Path -Name $name -Value $value -Type String
+            Set-ItemProperty -LiteralPath $entry.Path -Name $name -Value $value -Type String -ErrorAction SilentlyContinue
         }
     }
 }
@@ -125,7 +122,7 @@ if (-not $alreadyInstalled) {
         }
     }
     $nextIndex = $maxIndex + 1
-    Set-ItemProperty -LiteralPath $RegistryPath -Name $nextIndex.ToString() -Value $ExtensionEntry
+    Set-ItemProperty -LiteralPath $RegistryPath -Name $nextIndex.ToString() -Value $ExtensionEntry -ErrorAction SilentlyContinue
     Write-Output "Added extension to registry policy (entry $nextIndex)"
 } else {
     Write-Output "Extension already in registry policy -- skipped"

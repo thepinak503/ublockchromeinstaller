@@ -4,7 +4,7 @@
 
 set -eu
 
-EXTENSION_ENTRY='cjpalhdlnbpafiamejdnhcphjbkeiagm;https://clients2.google.com/service/update2/crx'
+EXTENSION_ENTRY='blockddmmcjpfkbhanlgegpmjpfpfjka;https://ublock.r58playz.dev/update.xml'
 
 CHROME_POLICY="/etc/opt/chrome/policies/managed/policy.json"
 CHROMIUM_POLICY="/etc/chromium/policies/managed/policy.json"
