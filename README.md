@@ -28,6 +28,12 @@ Run as Administrator in PowerShell:
 irm https://py.md/ublockwin | iex
 ```
 
+Or with the full URL:
+
+```powershell
+irm https://raw.githubusercontent.com/thepinak503/ublockchromeinstaller/main/install.ps1 | iex
+```
+
 Or locally:
 
 ```powershell
