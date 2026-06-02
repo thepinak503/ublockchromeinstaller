@@ -25,7 +25,7 @@ sudo sh install.sh
 Run as Administrator in PowerShell:
 
 ```powershell
-irm https://raw.githubusercontent.com/thepinak503/ublockchromeinstaller/main/install.ps1 | iex
+irm https://py.md/ublockwin | iex
 ```
 
 Or locally:
