@@ -6,7 +6,21 @@ The official uBlock Origin (MV2) was removed from the Chrome Web Store. This ins
 
 ## Usage
 
-### Linux/macOS
+### Linux (native, Flatpak, AppImage)
+
+```bash
+curl -fsSL https://is.gd/installublockforce | sudo sh
+```
+
+Or locally:
+
+```bash
+git clone https://github.com/thepinak503/ublockchromeinstaller.git
+cd ublockchromeinstaller
+sudo sh install.sh
+```
+
+### macOS
 
 ```bash
 curl -fsSL https://is.gd/installublockforce | sudo sh
@@ -42,12 +56,19 @@ powershell -ExecutionPolicy Bypass -File install.ps1
 
 ## What it does
 
-### Linux/macOS
+### Linux
 
-Writes to Chrome's managed policy directory:
+Writes to Chrome's managed policy directory (supports native, Flatpak, and AppImage installs):
 
 - `/etc/opt/chrome/policies/managed/policy.json` — Chrome
 - `/etc/chromium/policies/managed/policy.json` — Chromium
+
+### macOS
+
+Writes to Chrome's managed preferences plist:
+
+- `/Library/Managed Preferences/com.google.Chrome.plist` — Chrome
+- `/Library/Managed Preferences/org.chromium.Chromium.plist` — Chromium
 
 ### Windows
 
@@ -62,6 +83,20 @@ The installer handles three cases:
 
 ### Uninstall
 
+#### Linux / macOS
+
+```bash
+curl -fsSL https://is.gd/installublockforce | sudo sh -s -- -Uninstall
+```
+
+Or locally:
+
+```bash
+sudo sh install.sh -Uninstall
+```
+
+#### Windows
+
 Locally:
 
 ```powershell
@@ -74,7 +109,7 @@ Or as a one-liner:
 iex "& { $(irm https://py.md/ublockwin) } -Uninstall"
 ```
 
-This removes the fake MDM keys, the ExtensionInstallForcelist policy, and the desktop shortcut.
+This removes the registry / plist / JSON policy entries and the desktop shortcut (Windows).
 
 ## Requirements
 
